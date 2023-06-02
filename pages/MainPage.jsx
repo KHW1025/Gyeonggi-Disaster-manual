@@ -1,18 +1,15 @@
 import axios from "axios";
 
-import { ScrollView, View, IconButton, Text } from "native-base";
-import { StyleSheet, TouchableOpacity } from "react-native";
-
-import ImageBlurLoading from "react-native-image-blur-loading";
+import { ScrollView, View } from "native-base";
+import { StyleSheet } from "react-native";
 
 import { useEffect, useState } from "react";
-
-import { Entypo } from "@expo/vector-icons";
 
 import Loading from "./Loading";
 
 import HeaderComponent from "../components/HeaderComponent";
 import SearchInputComponent from "../components/SearchInputComponent";
+import BannerComponent from "../components/BannerComponent";
 
 import NaturalDisasterList from "../components/NaturalDisasterList";
 import SocialDisasterList from "../components/SocialDisasterList";
@@ -21,10 +18,9 @@ import YouTubeList from "../components/YoutubeList";
 
 const data = require("../data/DisasterManual.json");
 
-const bannerBg = require("../assets/bannerBg.png");
-
 export default function MainPage({ navigation }) {
-  const [manual, setManual] = useState(data.manual);
+  const manual = data.manual;
+
   const [videoData, setVideoData] = useState([]);
   const [ready, setReady] = useState(true);
 
@@ -38,7 +34,8 @@ export default function MainPage({ navigation }) {
         key: apiKey,
         part: "snippet",
         maxResults: 8,
-        q: "재난 대처 대비 대피",
+        q: "재난 대응 대처 대비 대피",
+        // q: "재난 대처 대비 대피",
         type: "video",
       };
       try {
@@ -51,7 +48,6 @@ export default function MainPage({ navigation }) {
         setReady(false);
       }
     };
-    // setManual(data.manual);
 
     setTimeout(() => {
       fetchVideoData(videoData);
@@ -68,62 +64,18 @@ export default function MainPage({ navigation }) {
     navigation.navigate("DetailPage", banner[0]);
   };
 
+  // 1월은 0으로 표현되기 때문에 1을 더해준다.
+  // console.log(new Date().getMonth() + 1 === 6);
+
   return ready ? (
     <Loading />
   ) : (
     <ScrollView style={styles.container}>
-      <HeaderComponent safeAreaTop navigation={navigation} />
-
-      <SearchInputComponent navigation={navigation} manual={manual} />
-
-      <TouchableOpacity style={styles.banner} onPress={() => goBannerDetail()}>
-        <ImageBlurLoading
-          source={bannerBg}
-          thumbnailSource={bannerBg}
-          style={{ width: "100%", height: "100%", borderRadius: 12 }}
-        ></ImageBlurLoading>
-        <View
-          position={"absolute"}
-          p={25}
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          style={{ width: "100%", height: "100%", borderRadius: 12 }}
-        >
-          <View justifyContent={"center"}>
-            <View
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              w={"94%"}
-            >
-              <Text
-                mb={1}
-                color={"#f5f5f5"}
-                alignSelf={"center"}
-                fontSize={16}
-                fontWeight={"bold"}
-                // style={{
-                //   fontFamily: "NotoSansKR-Regular",
-                // }}
-              >
-                올해 무더위 어떻게 대처해야할까요?
-              </Text>
-              <View pt={1}>
-                <Entypo name="chevron-thin-right" size={20} color="white" />
-              </View>
-            </View>
-            <Text
-              color={"#f5f5f5"}
-              fontSize={16}
-              fontWeight={"bold"}
-              // style={{
-              //   fontFamily: "NotoSansKR-Regular",
-              // }}
-            >
-              폭염에 대비해보세요.
-            </Text>
-          </View>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.topBox}>
+        <HeaderComponent safeAreaTop navigation={navigation} />
+        <SearchInputComponent navigation={navigation} manual={manual} />
+        <BannerComponent navigation={navigation} manual={manual} />
+      </View>
 
       <NaturalDisasterList
         manual={manual.filter((item) => item.category === "자연재난")}
@@ -150,9 +102,12 @@ const styles = StyleSheet.create({
     flex: 1,
     // marginTop: 26,
     paddingTop: 8,
-    paddingHorizontal: 16,
+    // paddingHorizontal: 16,
     backgroundColor: "#fff",
     // borderWidth: 1,
+  },
+  topBox: {
+    paddingHorizontal: 16,
   },
   banner: {
     marginTop: 25,

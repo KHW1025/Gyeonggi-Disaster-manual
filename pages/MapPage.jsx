@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
-import { View, Text, HStack, ScrollView } from "native-base";
+import { View, Text, HStack } from "native-base";
 import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapView from "react-native-maps";
 import * as Location from "expo-location";
@@ -61,14 +61,17 @@ export default function MapPage({ navigation }) {
       console.log("위치 권한이 허용되지 않았습니다.");
       return;
     }
-
     let currentLocation = await Location.getCurrentPositionAsync({});
     setLocation(currentLocation.coords);
   };
 
-  // 현재위치 버튼을 누르면 지도에 보여지는 위치값 업데이트
+  // setLocation에 값이 들어가 location이 업데이트 될때 마다
+  // 지도에 보여지는 위치값을 업데이트
   useEffect(() => {
     if (location) {
+      console.log(location.latitude);
+      console.log(location.longitude);
+
       mapRef.current.animateToRegion({
         latitude: location.latitude,
         longitude: location.longitude,
@@ -138,7 +141,7 @@ export default function MapPage({ navigation }) {
           </HStack>
         </HStack>
       </HStack>
-      <View alignItems={"center"}>
+      <View alignItems={"center"} background={"#F2F2F2"}>
         <Text p={2}>마커를 클릭하면 주소를 나타냅니다.</Text>
       </View>
       <View flex={1}>

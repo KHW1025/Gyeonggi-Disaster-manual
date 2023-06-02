@@ -36,7 +36,7 @@ export default function YouTubeList({ videoData, navigation }) {
         w={"100%"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        px={2}
+        px={5}
         mb={1}
       >
         <HStack alignItems={"center"}>
@@ -48,7 +48,7 @@ export default function YouTubeList({ videoData, navigation }) {
             />
           </View>
           <Text fontSize={18} fontWeight={"bold"} ml={1}>
-            요즘뜨는 유튜브
+            요즘 뜨는 유튜브
           </Text>
         </HStack>
         <TouchableOpacity
@@ -63,7 +63,7 @@ export default function YouTubeList({ videoData, navigation }) {
       </HStack>
       <ScrollView
         horizontal={true}
-        px={2}
+        px={4}
         py={2}
         // borderWidth={1}
         marginBottom={50}

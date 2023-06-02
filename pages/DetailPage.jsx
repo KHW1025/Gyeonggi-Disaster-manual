@@ -1,24 +1,12 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import {
-  ScrollView,
-  IconButton,
-  Icon,
-  Image,
-  Text,
-  View,
-  Input,
-  Center,
-} from "native-base";
-import HeaderComponent from "../components/HeaderComponent";
-import SearchInputComponent from "../components/SearchInputComponent";
+import { ScrollView, Image, Text, View, Center } from "native-base";
 
 import { useEffect, useState } from "react";
 
 export default function DetailPage({ navigation, route }) {
-  // console.log(route.params);
-
+  // MainPage의 배너, 재난 아이콘 카드를 누르면 받아오는 route값
   const list = route.params;
-  // const [list, setList] = useState(route.params);
+
   const [tabNum, setTabNum] = useState(0);
 
   // console.log(list.manualTabs.length);
@@ -108,10 +96,8 @@ const styles = StyleSheet.create({
     width: "30%",
     alignItems: "center",
     paddingVertical: 12,
-    // padding: 12,
     marginHorizontal: 6,
-    // borderRadius: 16,
-    marginBottom: 8,
+    marginBottom: 30,
   },
   tabBtnOn: {
     backgroundColor: "#3787FF",
@@ -124,12 +110,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   tabsTitleBox: {
-    // marginHorizontal: 10,
-    // borderWidth: 1,
     paddingHorizontal: 16,
     borderWidth: 1,
     borderColor: "#d4d4d4",
-    marginTop: 30,
+
     marginBottom: 10,
   },
   tabsTitle: {
@@ -142,10 +126,7 @@ const styles = StyleSheet.create({
   detailBox: {
     borderWidth: 1,
     borderColor: "#d4d4d4",
-    // borderStyle: "dotted",
-    // borderRadius: 16,
     padding: 16,
-    // margin: 10,
     paddingTop: 20,
     paddingBottom: 50,
   },
@@ -162,24 +143,12 @@ const styles = StyleSheet.create({
     // flexWrap: "wrap",
   },
   stepTextCon: {
-    // marginLeft: -10,
     marginRight: 10,
-    // width: "95%",
     marginVertical: 4,
-    // borderWidth: 1,
-    // borderColor: "red",
     flexDirection: "row",
-    // flexWrap: "wrap",
-    // flexDirection: "row",
-    // justifyContent: "space-between",
-    // marginVertical: -13,
-    // position: "relative",
   },
   stepLine: {
     width: 12,
-    // marginLeft: -12,
-    // position: "absolute",
-    // left: -10,
   },
   stepText: {
     flex: 1,

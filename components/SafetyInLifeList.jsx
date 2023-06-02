@@ -1,10 +1,7 @@
 import { View, ScrollView, HStack, Image } from "native-base";
 import { Text } from "native-base";
 import { StyleSheet } from "react-native";
-import { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
-
-import { useEffect } from "react";
 
 export default function SafetyInLifeList({ navigation, manual }) {
   // 모두보기를 누르면 재난메뉴얼 리스트 페이지로 이동
@@ -31,7 +28,7 @@ export default function SafetyInLifeList({ navigation, manual }) {
         w={"100%"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        px={2}
+        px={5}
         mb={1}
       >
         <Text fontSize={18} fontWeight={"bold"}>
@@ -44,7 +41,7 @@ export default function SafetyInLifeList({ navigation, manual }) {
         </TouchableOpacity>
       </HStack>
 
-      <ScrollView horizontal={true} px={2} py={2}>
+      <ScrollView horizontal={true} px={4} py={2}>
         {manual.map((item, i) => {
           return (
             <TouchableOpacity key={i} onPress={() => goDetail(i)}>

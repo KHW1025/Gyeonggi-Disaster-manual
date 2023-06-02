@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: "#C7EBFF", // 말풍선의 색상 설정
     padding: 20,
-    width: 250,
+    width: 255,
     height: 90,
     borderRadius: 10,
     marginBottom: 20,

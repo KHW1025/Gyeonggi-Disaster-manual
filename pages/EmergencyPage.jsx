@@ -20,16 +20,7 @@ export default function EmergencyPage({ navigation }) {
           <Text fontSize={18} fontWeight={"bold"} ml={1}>
             긴급전화
           </Text>
-          <Text
-            style={{
-              transform: [{ rotate: "15deg" }],
-              fontSize: 16,
-              color: "#000000",
-              marginTop: 4,
-            }}
-          >
-            Click!
-          </Text>
+          <Text mr={1}>Click!</Text>
         </HStack>
         <View mt={2}>
           <TouchableOpacity
@@ -189,7 +180,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 12,
     padding: 4,
-    // borderColor: "#b6b6b6",
     borderColor: "#BCBCBC",
     backgroundColor: "#f7f7f7",
   },
